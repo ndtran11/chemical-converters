@@ -31,6 +31,7 @@ from rdkit.Chem import AllChem
 import warnings
 from typing import List, Union
 import torch
+from typing import Union, List, Tuple
 
 
 class BatchDataset(Dataset):
@@ -154,7 +155,7 @@ class NamesConverter:
 
     def smiles_to_iupac(self, smiles: Union[str, List[str]], num_beams: int = 1,
                         num_return_sequences: int = 1, process_in_batch: bool = False,
-                        batch_size: int = 32, validate: bool = False) -> list[str] | tuple[str, float] | str:
+                        batch_size: int = 32, validate: bool = False) -> Union[List[str], Tuple[str, float], str]:
         """Converts a SMILES representation to an IUPAC name."""
         if process_in_batch:
             if validate:
@@ -170,7 +171,7 @@ class NamesConverter:
         return prediction
 
     def iupac_to_smiles(self, iupac: Union[str, List[str]], num_beams: int = 1, num_return_sequences: int = 1,
-                        process_in_batch: bool = False, batch_size: int = 32) -> list[str] | str:
+                        process_in_batch: bool = False, batch_size: int = 32) -> Union[List[str], str]:
         """Converts an IUPAC name to a SMILES representation."""
         if process_in_batch:
             if num_return_sequences != 1:
