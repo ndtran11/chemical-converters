@@ -23,7 +23,7 @@ classifiers = [
 
 dependencies = [
     "transformers==4.36.2",
-    "torch==2.1.2",
+    "torch",
     "rdkit==2023.3.3",
     "requests==2.31.0"
 ]
